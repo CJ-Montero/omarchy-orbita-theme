@@ -1,0 +1,9 @@
+# Órbita's floating top bar: deep space with pale blue labels and cyan alerts.
+[bar]
+background = "#0e1420"
+background-alpha = 1.0
+text = "#c0dbe0"
+active = "#68b3d8"
+scale-with-font = true
+size-horizontal = 26
+size-vertical = 28

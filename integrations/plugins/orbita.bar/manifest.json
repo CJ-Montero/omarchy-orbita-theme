@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "orbita.bar",
+  "name": "Órbita floating bar",
+  "version": "1.0.0",
+  "author": "CJ Montero / Omarchy",
+  "description": "Floating status bar with inset margins and rounded corners for Órbita",
+  "kinds": ["bar"],
+  "entryPoints": { "bar": "Bar.qml" },
+  "omarchy": { "clonedFrom": "omarchy.bar" }
+}

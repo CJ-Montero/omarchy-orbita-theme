@@ -1,8 +1,8 @@
 # Órbita
 
 A dark space theme for Omarchy, with vivid blue panels, cyan accents and orbital
-window borders. Includes an original ringed-planet wallpaper and 22 NASA space
-wallpapers from the Artemis theme.
+window borders and a floating top bar with rounded corners. Includes an original
+ringed-planet wallpaper and 22 NASA space wallpapers from the Artemis theme.
 
 ![Órbita desktop preview](preview.png)
 
@@ -10,6 +10,43 @@ wallpapers from the Artemis theme.
 
 ```bash
 omarchy theme install https://github.com/CJ-Montero/omarchy-orbita-theme
+```
+
+## Floating top bar
+
+The bar uses Órbita's deep space background, pale blue text and cyan accents.
+It floats inside the screen edges with rounded corners, matching the desktop's
+outer gaps and window radius. Your current widgets, their settings and their
+order are preserved.
+
+Omarchy applies `shell.bar.toml` as part of the theme, but installing a theme
+does not register Quickshell plugins or theme hooks. Install the bundled bar
+integration once after installing the theme:
+
+```bash
+bash ~/.config/omarchy/themes/orbita/install-bar.sh
+```
+
+The installer registers `orbita.bar` and a `theme-set` hook. If Órbita is already
+selected, the bar appears immediately; otherwise it activates on the next
+`omarchy theme set orbita`. Changing to another theme restores the previous
+bar selection, position and transparency while preserving widget edits made
+in the meantime. Selecting a different bar manually is also respected.
+
+The previous choice is stored in `~/.local/state/omarchy/orbita-bar/previous.json`.
+Re-running the installer updates the plugin and backs up the installed copy
+under that same state directory. Run it again after updating the theme to
+update the bar code and hook.
+
+To remove the integration, first select another theme, then remove
+`~/.config/omarchy/hooks/theme-set.d/orbita-bar` and
+`~/.config/omarchy/plugins/orbita.bar/`.
+
+The integration requires Omarchy's Quickshell shell with support for full-bar
+plugins. Its theme-switching checks can be run without a graphical session:
+
+```bash
+python3 tests/test_bar_hook.py
 ```
 
 ## Default wallpaper
@@ -65,6 +102,8 @@ Reload with `hyprctl reload`, then check `hyprctl configerrors`. This gives a
 ## Credits and license
 
 - Theme by [CJ Montero](https://github.com/CJ-Montero).
+- The floating bar is adapted from Omarchy's Quickshell bar. Its original MIT
+  license is preserved in `integrations/plugins/orbita.bar/LICENSE`.
 - Original ringed-planet wallpaper generated with OpenAI imagegen. The complete
   generation prompt is in `wallpaper-prompt.txt`.
 - The 22 additional wallpapers are copied from

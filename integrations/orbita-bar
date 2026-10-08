@@ -1,0 +1,50 @@
+#!/bin/bash
+# theme-set hook: select Órbita's bar and restore the prior choice on departure.
+set -euo pipefail
+
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/omarchy"
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/omarchy/orbita-bar"
+config_file="$config_dir/shell.json"
+previous_file="$state_dir/previous.json"
+theme="${1:-}"
+
+[[ $theme == orbita || -f $previous_file ]] || exit 0
+mkdir -p "$state_dir" "$config_dir"
+exec 9>"$state_dir/lock"
+flock 9
+
+source_file="$config_file"
+[[ -s $source_file ]] || source_file="${OMARCHY_PATH:-/usr/share/omarchy}/config/omarchy/shell.json"
+scratch=""
+trap '[[ -z $scratch ]] || rm -f "$scratch"' EXIT
+
+write_config() {
+  scratch=$(mktemp "$config_dir/.orbita-shell.XXXXXX")
+  jq -e "$@" "$source_file" >"$scratch"
+  mv "$scratch" "$config_file"
+  scratch=""
+  # File watchers reload automatically; also ask a running shell to reload.
+  omarchy-shell -q shell reloadConfig >/dev/null 2>&1 || true
+}
+
+if [[ $theme == orbita ]]; then
+  [[ -f $config_dir/plugins/orbita.bar/manifest.json ]] || {
+    echo "Órbita bar is not installed; run the theme's install-bar.sh." >&2
+    exit 1
+  }
+  if [[ ! -f $previous_file ]]; then
+    scratch=$(mktemp "$state_dir/.previous.XXXXXX")
+    jq -e '(.bar // {}) | with_entries(select(.key == "id" or .key == "position" or .key == "transparent"))' \
+      "$source_file" >"$scratch"
+    mv "$scratch" "$previous_file"
+    scratch=""
+  fi
+  write_config '.bar = (.bar // {}) | .bar.id = "orbita.bar" | .bar.position = "top" | .bar.transparent = false'
+elif [[ -f $previous_file ]]; then
+  # Keep a bar the user deliberately selected while Órbita was active.
+  if [[ $(jq -r '.bar.id // ""' "$source_file") == orbita.bar ]]; then
+    write_config --slurpfile previous "$previous_file" \
+      '.bar |= (del(.id, .position, .transparent) + $previous[0])'
+  fi
+  rm -f "$previous_file"
+fi
