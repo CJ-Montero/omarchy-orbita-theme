@@ -1,0 +1,10 @@
+Use case: stylized-concept
+Asset type: Omarchy Linux desktop wallpaper, landscape 16:9, ideally 3840x2160.
+Primary request: an elegant space-themed wallpaper coordinated to this exact five-color palette: bony/ebony #0e1420, cloud burst #243351, william #3a5b6e, bermuda gray #6e91a6, tower gray #a4b9bc.
+Scene/backdrop: vast deep blue-black outer space, a very subtle smoky blue nebula and sparse tiny pale blue-gray stars.
+Subject: one majestic shadowed ringed planet, softly illuminated with a narrow blue-gray atmospheric rim; fine delicate orbital rings and a small distant moon.
+Style/medium: polished cinematic space illustration with restrained, atmospheric realism, smooth gradients, fine detail.
+Composition/framing: wide 16:9 composition, planet off-center, lots of calm dark negative space, keep top edge dark and unobtrusive for a desktop status bar.
+Lighting/mood: serene cosmic night, subdued light, low overall brightness, avoid a blinding sun or bright glow.
+Color palette: use the five specified shades as the entire visual palette and interpolations, dominant #0e1420 and #243351, ring/rim highlights #6e91a6 and #a4b9bc, nebula #3a5b6e. No warm colors, no purple, no pure white.
+Constraints: full bleed landscape wallpaper, no text, no letters, no logos, no watermark, no border, no UI.

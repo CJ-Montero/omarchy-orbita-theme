@@ -1,0 +1,38 @@
+# Órbita: espacio profundo, variante más viva de la paleta original.
+mode = "dark"
+
+accent = "#68b3d8"
+selection = "#243e63"
+selection_background = "#243e63"
+selection_foreground = "#c0dbe0"
+muted = "#3f7895"
+
+background = "#0e1420"
+dark_background = "#0e1420"
+darker_background = "#0e1420"
+lighter_background = "#243e63"
+
+foreground = "#c0dbe0"
+dark_foreground = "#68b3d8"
+light_foreground = "#c0dbe0"
+bright_foreground = "#c0dbe0"
+
+# ANSI y sintaxis: tonos fríos de la paleta azul más viva.
+red = "#c0dbe0"
+yellow = "#c0dbe0"
+orange = "#68b3d8"
+green = "#68b3d8"
+cyan = "#c0dbe0"
+blue = "#68b3d8"
+magenta = "#68b3d8"
+brown = "#3f7895"
+
+bright_red = "#c0dbe0"
+bright_yellow = "#c0dbe0"
+bright_green = "#c0dbe0"
+bright_cyan = "#c0dbe0"
+bright_blue = "#c0dbe0"
+bright_magenta = "#c0dbe0"
+
+hyprland_active_border = "#68b3d8 #c0dbe0 45deg"
+hyprland_inactive_border = "#3f7895"
